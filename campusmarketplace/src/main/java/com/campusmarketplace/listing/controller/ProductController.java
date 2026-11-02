@@ -21,20 +21,18 @@ public class ProductController {
         this.productService = productService;
     }
 
-    // Add product
+ 
     @PostMapping
     public ResponseEntity<Product> addProduct(@RequestBody Product product) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(productService.addProduct(product));
     }
 
-    // Get all products
     @GetMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
     }
 
-    // Get product by ID
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {
         Product product = productService.getProductById(id);
@@ -46,19 +44,18 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
-    // Filter by category
+  
     @GetMapping("/category/{category}")
     public List<Product> getProductsByCategory(@PathVariable String category) {
         return productService.getProductsByCategory(category);
     }
 
-    // Search by title
+ 
     @GetMapping("/search")
     public List<Product> searchProducts(@RequestParam String title) {
         return productService.searchProducts(title);
     }
 
-    // Update product
     @PutMapping("/{id}")
     public ResponseEntity<Product> updateProduct(
             @PathVariable Long id,
@@ -73,7 +70,7 @@ public class ProductController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-    // Delete product
+   
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
